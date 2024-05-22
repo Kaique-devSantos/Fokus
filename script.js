@@ -5,6 +5,10 @@ const curtoBt = document.querySelector('.app__card-button--curto');
 const longoBt = document.querySelector('.app__card-button--longo'); 
 const botaoIniciar = document.querySelector('.app__card-primary-button');
 const displayTempo = document.querySelector('#timer');
+const botoes = document.querySelectorAll('.app__card-button')
+
+
+
 
 const banner = document.querySelector('.app__image');
 const titulo = document.querySelector('.app__title')
@@ -30,20 +34,26 @@ document.querySelector('.app__title');
 // })
 
 focoBt.addEventListener('click', () => {
-    alterarContexto('foco')
+    alterarContexto('foco');
+    focoBt.classList.add('active');
 });
 
 curtoBt.addEventListener('click', () => {
-    alterarContexto('descanso-curto')
+    alterarContexto('descanso-curto');
+    curtoBt.classList.add('active');
 });
 
 longoBt.addEventListener('click', () => {
-    alterarContexto('descanso-longo')
+    alterarContexto('descanso-longo');
+    longoBt.classList.add('active');
 })
 
 function alterarContexto(contexto) {
-    html.setAttribute('data-contexto', contexto);
-    banner.setAttribute('src', `/imagens/${contexto}.png`);
+    botoes.forEach(function (contexto){
+        contexto.classList.remove('active')
+    })
+    html.setAttribute('data-contexto', contexto)
+    banner.setAttribute('src', `/imagens/${contexto}.png`)
     switch (contexto) {
         case "foco":
             titulo.innerHTML = `
@@ -64,6 +74,5 @@ function alterarContexto(contexto) {
             break;
     }
 }
-
 
 
